@@ -1,25 +1,22 @@
 package Test;
 
 import base.TestBase;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.*;
 import pages.*;
-import util.LogUtils;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 public class LoginLogoutTest extends TestBase {
     public LoginPage loginpage;
     public LogoutPage logoutpage;
 
-    public LoginLogoutTest()
-    {
-        super();
-    }
+    public LoginLogoutTest(){super();}
 
-    @BeforeMethod()
+    @BeforeTest()
     public void start(){
     initialization();
-    sleep();
+    webDriverWait();
+    webwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='signInName']")));
     loginpage=new LoginPage();
     logoutpage=new LogoutPage();
     }
@@ -27,11 +24,15 @@ public class LoginLogoutTest extends TestBase {
     @Test
     public void login(){
         loginpage.Login(prop.getProperty("email"), prop.getProperty("password"));
-        Sleep();
+    }
+
+    @Test
+    public void logout(){
+        login();
         logoutpage.Logout();
     }
 
-    @AfterMethod()
+    @AfterTest()
     public void Close()
     {
         driver.quit();

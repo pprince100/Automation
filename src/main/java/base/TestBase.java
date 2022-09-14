@@ -1,12 +1,18 @@
 package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
-import util.LogUtils;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +20,7 @@ public class TestBase {
 
     public static WebDriver driver;
     public static Properties prop;
+    public WebDriverWait webwait;
 
     public TestBase(){
         try {
@@ -28,26 +35,11 @@ public class TestBase {
     }
 
     public static void initialization() {
-        String browserName = prop.getProperty("browser");
-        LogUtils.info("Browser name: " + browserName);
             driver = WebDriverManager.chromedriver().create();
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("start-maximized"); // open Browser in maximized mode
             driver.get(prop.getProperty("url"));
         }
-        public void sleep(){;
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void Sleep(){;
-        try {
-            Thread.sleep(15000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+    public void webDriverWait(){
+        webwait = new WebDriverWait(driver, Duration.ofSeconds(50));
+       }
 }

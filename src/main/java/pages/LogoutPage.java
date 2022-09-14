@@ -1,7 +1,9 @@
 package pages;
 
 import base.TestBase;
-import util.LogUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,10 +17,16 @@ public class LogoutPage extends TestBase {
     @FindBy(xpath = "//span[text()='Sign out']")
     WebElement Signout;
 
+    @FindBy(xpath = "//h2[contains(text(),'Sign into your account')]")
+    WebElement VerifyLogout;
+
     public void Logout(){
         Avtar.click();
-        LogUtils.info("Clicked on Avtar");
         Signout.click();
-        LogUtils.info("Clicked on Signout");
+        webDriverWait();
+        webwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'Sign into your account')]")));
+        String expectedResult = VerifyLogout.getText();
+        String actualResult = "Sign into your account";
+        Assert.assertEquals(expectedResult, actualResult);
     }
 }
