@@ -12,5 +12,9 @@ using the latest chromedrive compatible with chrome version installed in the sys
 I have also used webdrivewait to wait until a particular element is visible
 I have pushed the scrip to Github, repository detail is mentioned below
 
+Issue Observed
+On the mtribes Login Page the email and password placeholder text is changing on every 2-3 refresh
+from Your Email to email@yourcompany.com and Password to Enter your password and vice versa
+
 Github Repository: https://github.com/pprince100/Automation.git
 To clone the project use: git clone https://github.com/pprince100/Automation.git
