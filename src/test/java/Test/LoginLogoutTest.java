@@ -21,14 +21,13 @@ public class LoginLogoutTest extends TestBase {
     logoutpage=new LogoutPage();
     }
 
-    @Test
+    @Test // This will test Login
     public void login(){
         loginpage.Login(prop.getProperty("email"), prop.getProperty("password"));
     }
 
-    @Test
+    @Test //This will test Logout
     public void logout(){
-        login();
         logoutpage.Logout();
     }
 

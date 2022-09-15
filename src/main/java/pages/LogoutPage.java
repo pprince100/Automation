@@ -1,12 +1,11 @@
 package pages;
 
 import base.TestBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class LogoutPage extends TestBase {
     public LogoutPage() {PageFactory.initElements(driver, this);}
@@ -24,9 +23,10 @@ public class LogoutPage extends TestBase {
         Avtar.click();
         Signout.click();
         webDriverWait();
-        webwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'Sign into your account')]")));
+        webwait.until(ExpectedConditions.visibilityOf(VerifyLogout));
         String expectedResult = VerifyLogout.getText();
         String actualResult = "Sign into your account";
         Assert.assertEquals(expectedResult, actualResult);
+        System.out.println("Logged out Successfully");
     }
 }

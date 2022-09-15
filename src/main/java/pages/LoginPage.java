@@ -1,15 +1,11 @@
 package pages;
 
 import base.TestBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.time.Duration;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class LoginPage extends TestBase {
     public LoginPage() {PageFactory.initElements(driver, this);}
@@ -31,9 +27,10 @@ public class LoginPage extends TestBase {
         Password.sendKeys(password);
         Signin.click();
         webDriverWait();
-        webwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[text()='Select an organization']")));
+        webwait.until(ExpectedConditions.visibilityOf(VerifyLogin));
         String expectedResult = VerifyLogin.getText();
         String actualResult = "Select an organization";
         Assert.assertEquals(expectedResult, actualResult);
+        System.out.println("Logged in Successfully");
     }
 }
